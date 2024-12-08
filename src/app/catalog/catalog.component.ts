@@ -23,7 +23,7 @@ export class CatalogComponent {
     });
   }
   addToCart(product: IProduct) {
-    this.cartSvc.addToCart(product);
+    this.cartSvc.add(product);
   }
 
   getFilteredProducts() {

@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { IProduct } from './catalog/product.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
   cart: IProduct[] = [];
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  addToCart(product: IProduct) {
+  add(product: IProduct) {
     this.cart.push(product);
-    console.log(`product ${product.name} added to cart`);
-  }
-  getCartItems() {
-    return this.cart;
+    this.http.post('/api/cart', this.cart).subscribe(() => {
+      console.log(`product ${product.name} added to cart`);
+    });
   }
 }
